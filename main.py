@@ -7,12 +7,30 @@ import os
 from groq import Groq
 from gtts import gTTS
 import tempfile
-import os
 from dotenv import load_dotenv
 
+# Load environment variables
+# For local development: uses .env file
+# For Streamlit Cloud: uses Streamlit secrets
 load_dotenv()
 
-GROK_API_KEY = os.getenv("GROK_API_KEY")
+def get_api_key(key_name: str) -> str:
+    """
+    Get API key from environment variables.
+    Supports both local (.env) and Streamlit Cloud (st.secrets) deployments.
+    """
+    try:
+        # Try Streamlit secrets first (for Streamlit Cloud)
+        return st.secrets[key_name]
+    except (KeyError, FileNotFoundError):
+        # Fall back to environment variables (for local development)
+        api_key = os.getenv(key_name)
+        if not api_key:
+            st.error(f"❌ {key_name} not found. Please configure it in .streamlit/secrets.toml or .env file.")
+            st.stop()
+        return api_key
+
+GROK_API_KEY = get_api_key("GROK_API_KEY")
 
 # CONFIG
 IMG_SIZE = (224, 224)

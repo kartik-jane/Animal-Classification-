@@ -1,8 +1,12 @@
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env
+.streamlit/secrets.toml
 db.sqlite3
 *.log
 .idea/
 .vscode/
+*.h5
+.DS_Store
