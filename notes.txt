@@ -1,0 +1,17 @@
+animal-classification/
+├── animals/                    # Your 90 folders are here
+│   ├── antelope/
+│   ├── zebra/
+│   └── ... 
+├── model/                      # Create this empty folder
+│   └── animal_model.h5         # Will be generated here
+├── src/                        # Create this folder
+│   ├── train.py
+│   ├── predict.py
+│   └── utils.py
+├── outputs/                    # Create this folder
+│   ├── accuracy.png
+│   └── loss.png
+├── requirements.txt
+├── README.md
+└── main.ipynb                  # Your Jupyter Notebook
